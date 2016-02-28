@@ -24,7 +24,8 @@ SECRET_KEY = os.getenv("TD_SECRET_KEY", "")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.getenv("DEBUG", "").lower() in ('1', 'true'):
+    DEBUG = True
 
 ALLOWED_HOSTS = []
 
