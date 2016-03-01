@@ -1,5 +1,6 @@
 layout python3
 export TD_SECRET_KEY=
-
-
+export DEBUG=True
+export TD_GOOGLE_OAUTH2_KEY=
+export TD_GOOGLE_OAUTH2_SECRET=
 

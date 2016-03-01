@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'social.apps.django_app.default',
+
+    'core',
+    'webfront',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -51,6 +56,13 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.google.GoogleOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 
 ROOT_URLCONF = 'tomorrow_do.urls'
 
@@ -65,6 +77,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -121,3 +136,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("TD_GOOGLE_OAUTH2_KEY", '')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("TD_GOOGLE_OAUTH2_SECRET", '')
