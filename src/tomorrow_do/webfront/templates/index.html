@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
 {% block main %}
-    <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
+    <h1>{{ title }}</h1>
+
+    <p>
+        <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
+    </p>
+{% endblock %}
+
+{% block scripts %}
+    var app = angular.module('TomorrowDoApp', ['ngMaterial']);
 {% endblock %}

@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>明日から本気出すタスク管理</title>
+    <title>{{ title }}</title>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -13,11 +13,48 @@
     <!-- Angular Material Library -->
     <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
 </head>
-<body ng-app="TomorrowDoApp">
+<body ng-app="TomorrowDoApp" ng-controller="MainController as mc" ng-cloak layout="column">
 
-{% block main %}
+    <md-toolbar layout="row" >
+        <md-button class="menu" hide-gt-sm ng-click="mc.toggleMenu()" >
+            <md-icon>open</md-icon>
+        </md-button>
+    </md-toolbar>
 
-{% endblock %}
+    <div flex layout="row">
+
+        <md-sidenav md-is-locked-open="$mdMedia('gt-sm')"
+                    md-component-id="left">
+            aaaa
+        </md-sidenav>
+
+        <md-content flex id="content">
+            {% block main %}
+            {% endblock %}
+        </md-content>
+
+</div>
+
+<script>
+    var app = angular.module('TomorrowDoApp', ['ngMaterial']);
+    app.config(function($mdThemingProvider){
+        $mdThemingProvider.theme('default')
+                .primaryPalette('blue-grey')
+                .accentPalette('grey');
+    });
+    app.controller('MainController', function($mdSidenav) {
+        var self = this;
+
+        self.toggleMenu = function () {
+            $mdSidenav('left').toggle();
+        };
+
+    });
+    app.controller('TodoController', function($mdSidenav) {
+        var self = this;
+
+    });
+</script>
 
 </body>
 </html>
