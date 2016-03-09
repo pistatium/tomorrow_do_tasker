@@ -1,10 +1,24 @@
 {% extends "base.html" %}
 
 {% block main %}
-    <div ng-controller="TodoController as tc">
-        <h1>{{ title }}</h1>
-        <p>
-            aaa
-        </p>
+
+    <h1>Today</h1>
+    <div layout="row" layout-wrap>
+        <md-card style="width: 300px;" >
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Card with image</span>
+                    <span class="md-subhead">Due to: Tomorrow</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button>Edit</md-button>
+                <md-button>Done</md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+
+    <h1>Tomorrow</h1>
+    <div layout="row" layout-wrap>
     </div>
 {% endblock %}

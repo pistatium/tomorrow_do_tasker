@@ -6,4 +6,16 @@ Online task management tools.
 * Online editing.
 * Share tasks with team.
 
+## Setup Development
+
+__Requirements__
+* Python3.x
+* direnv
+
+
+```
+cp .envrc.orig .envrc
+edit .envrc
+direnv allow
+```
 
