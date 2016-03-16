@@ -16,9 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from restapi.urls import router as api_router
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url('social/', include('social.apps.django_app.urls', namespace='social')),
-    url('auth/', include('django.contrib.auth.urls', namespace='auth')),
+    url('^social/', include('social.apps.django_app.urls', namespace='social')),
+    url('^auth/', include('django.contrib.auth.urls', namespace='auth')),
+    url(r'^api/', include(api_router.urls)),
     url(r'', include('webfront.urls')),
 ]

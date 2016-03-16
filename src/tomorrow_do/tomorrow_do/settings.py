@@ -27,6 +27,25 @@ SECRET_KEY = os.getenv("TD_SECRET_KEY", "")
 if os.getenv("DEBUG", "").lower() in ('1', 'true'):
     DEBUG = True
 
+if os.getenv("DEBUG_QUERY", "").lower() in ('1', 'true'):
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'loggers': {
+            'django.db.backends': {
+                'handlers': ['console'],
+                'level': 'DEBUG',
+            },
+        },
+    }
+
+
 ALLOWED_HOSTS = []
 
 
@@ -41,9 +60,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'social.apps.django_app.default',
+    'rest_framework',
 
     'core',
     'webfront',
+    'restapi',
 ]
 
 MIDDLEWARE_CLASSES = [
