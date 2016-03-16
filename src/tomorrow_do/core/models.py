@@ -6,7 +6,7 @@ from django.db import models
 class User(models.Model):
     name = models.CharField(max_length=128)
     email = models.EmailField(blank=True)
-    icon = models.ImageField(null=True)
+    icon = models.ImageField(null=True, blank=True)
 
 
 class Auth(models.Model):
