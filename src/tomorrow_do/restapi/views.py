@@ -13,7 +13,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
     permission_classes = [BelongToOwner, ]
 
     def get_queryset(self):
-        return Project.objects.filter(group__users__name="test") #self.request.user)
+        return Project.objects.filter(group__users=self.request.user)
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -21,4 +21,4 @@ class TaskViewSet(viewsets.ModelViewSet):
     permission_classes = [BelongToOwner, ]
 
     def get_queryset(self):
-        return Task.objects.filter(project__group__users__name=self.request.user)
+        return Task.objects.filter(project__group__users=self.request.user)

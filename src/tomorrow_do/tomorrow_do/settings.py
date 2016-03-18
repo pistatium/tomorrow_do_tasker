@@ -158,6 +158,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AUTH_USER_MODEL = 'core.User'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get("TD_GOOGLE_OAUTH2_KEY", '')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get("TD_GOOGLE_OAUTH2_SECRET", '')
+
+

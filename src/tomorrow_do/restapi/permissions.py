@@ -2,12 +2,14 @@
 
 from rest_framework import permissions
 
+from django.http import HttpRequest
+
 from core.models import Task, Project
 
 
 class BelongToOwner(permissions.BasePermission):
 
-    def has_object_permission(self, request, view, obj):
+    def has_object_permission(self, request: HttpRequest, view, obj):
         if isinstance(obj, Task):
             users = obj.project.group.users
             return self._check_user(request, users)
@@ -17,5 +19,5 @@ class BelongToOwner(permissions.BasePermission):
         raise NotImplementedError()
 
     @staticmethod
-    def _check_user(request, users):
-        return users.filter(name=request.user).count() > 0
+    def _check_user(request: HttpRequest, users):
+        return users.filter(username=request.user.username).count() > 0

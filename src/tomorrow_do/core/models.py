@@ -1,11 +1,10 @@
 # coding: utf-8
 
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
-class User(models.Model):
-    name = models.CharField(max_length=128)
-    email = models.EmailField(blank=True)
+class User(AbstractUser):
     icon = models.ImageField(null=True, blank=True)
 
 
@@ -18,7 +17,7 @@ class Auth(models.Model):
 
 class Group(models.Model):
     name = models.CharField(max_length=128)
-    users = models.ManyToManyField(User, related_name="groups")
+    users = models.ManyToManyField(User, related_name="user_groups")
 
 
 class Project(models.Model):
@@ -28,7 +27,7 @@ class Project(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=256)
-    group = models.ForeignKey(Project, related_name="tasks")
+    project = models.ForeignKey(Project, related_name="tasks")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     due_at = models.DateTimeField(null=True, blank=True)
